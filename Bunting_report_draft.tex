@@ -1,6 +1,6 @@
 \documentclass[11pt]{amsart}
-\usepackage{geometry}           % See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper} % ... or a4paper or a5paper  or ... 
+\usepackage[centering]{geometry}           % See geometry.pdf to learn the layout options. There are lots.
+\geometry{a4paper} % ... or a4paper or a5paper  or ... letterpaper
 %\geometry{landscape}                % Activate for for rotated page geometry
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an
 %indent
@@ -27,13 +27,74 @@
 
 Stars are ubiquitous in almost all areas of astrophysics, and it is becoming increasingly apparent that planets are a common occurrence as well.  My project revolves around the interaction between a subset of these two very common objects, and will enable us to test our understanding of what is going on inside the stars, and also could help in the hunt for planets.
 
+
+
+
+
+
+
 \subsection{Asteroseismology}
 
 Variable stars have been observed for over $3000$ years \cite{Jetsu2015}, although only in the last few centuries has the number of observed variable stars really grown \cite{Hoffleit1997}.  That stars are not constant was a major change from the classical view of the celestial sphere, and adds many layers to the complexity of stars, but also introduces new ways for us to learn about them.  Asteroseismology is the study of stellar oscillations, and is a rapidly growing field, as the quality of observations of stellar surfaces continues to improve.
 
 Asteroseismology, understandably, first came about in studying the oscillations of our very own star -- potentially the first such vibrations were observed by Plaskett in 1916 \cite{Plaskett1916}, although the  observed variation in solar rotation was thought to be due to some atmospheric effects, but this was shown not to be the case by Hart in 1954 \cite{Hart1954}.  Since then, thousands of solar oscillation modes have been observed, each one enabling a subtly different probe of the solar interior \cite{DiMauro2017}.  The most prominent mode has a period of around $5$ minutes, and decays rapidly (over a few periods) \cite{Ulrich1970},  and is thought to be driven by convective motions inside the sun, although this is still an area of active research.  Observations of oscillations on other stars soon followed \cite{Brown1991}, including the detection of individual modes of oscillation on $\eta$ Bootis in 1995, although this was also unclear until it was confirmed in 2003 \cite{Kjeldsen2003}.
 
-The great benefit in observing these osillations is the fact that they are oscillations throughout the body star, not merely at the surface.  This allows the interior structure of the star to be assessed much more readily than observations which depend only on the surface properties of the star.  This has been applied in various ways, including using asteroseismology to determine various properties of stars, including precise estimates of their ages \cite{Cunha2007} \cite{Chaplin2013}.
+The study of these modes of oscillation is a generalised version of the study of variable stars such as $\delta$ Scuti stars, the brightest of which oscillate in a spherically symmetric manner as opposed to the not purely radial oscillations which are harder to observe \cite{Garg2010}.  They have a clearly dominant mode of pulsation, with large variation in their physical properties (the variation in magnitude can exceed $0.5$ mag \cite{Garg2010}).  An obvious wider application of the study of stellar oscillations is the use of Cepheid variables to determine a cosmic distance scale \cite{Madore1991}.
+
+The great benefit in studying these oscillations is the fact that they are oscillations throughout the body star, not merely at the surface.  This allows the interior structure of the star to be assessed much more readily than observations which depend only on the surface properties of the star.  This has been applied in several ways, such as using asteroseismology to determine various properties of stars, including precise estimates of their ages \cite{Chaplin2013} \cite{Cunha2007}.
+
+\subsubsection{Stellar Oscillation Equations}
+
+In order to quantitatively study these oscillations, a system of equations to describe them must be used.  In order to be able to derive this set of equations, the following assumptions must be made.
+
+\begin{description}
+\item[Time independence]
+ The equilibrium structure of the star changes on a time-scale much smaller than that of the oscillations.
+ 
+ \item[Spherical symmetry]
+ The equilibrium structure of the star is totally spherically symmetric, totally parametrised as a function only of the radius.  This enables us to use spherical harmonics to simplify things throughout the derivation.
+ 
+ \item[Static state]
+ Fluid velocity of the equilibrium state is negligible compared to the motions of the oscillations.
+ 
+ \item[Cowling approximation]
+ The perturbation to the self-gravity potential due to the deformation of the star in the process of oscillating is negligible compared to the perturbation which incites the oscillations.
+ 
+ \item[Small perturbation]
+ The perturbation must be small, so that the linearised regime is a valid approximation.
+ 
+ \item[Wave solutions]
+ We assume wavelike solutions, with a time dependence of $e^{i m \omega t}$, where $m$ is the order of the spherical harmonic and $\omega$ is the angular frequency of the planet's orbit.
+\end{description}
+
+
+To start with, 12 hydrodynamic and thermodynamic equations are linearised and expressed in terms of spherical harmonics. The undesirable perturbed variables are eliminated, to leave four first order linear differential equations in terms of $\xi_{r}$, $F_{r}$, $p'$ and $T'$; the radial displacement, perturbation to the radial flux, perturbation to the pressure and perturbation to the temperature.  A more complete derivation is given in appendix \ref{ap:Osc}.
+
+
+
+
+
+\subsection{Stellar Structure}
+
+Given the vital importance in understanding the properties and behaviour of stars in almost all areas of astrophysics, a thorough, accurate, and testable understanding of stellar structure is of great importance.  However, stars are large and complex objects, with their physical properties depending on processes ranging from sub-atomic to large scale fluid dynamics, and lots more in between.  As such, they are difficult to model, particularly given the fact that they are three-dimensional, non-symmetrical objects, full of non-linear fluid dynamics.  Therefore, various approximations must be made in an effort to make the calculations practical \cite{Paxton2011}.
+
+Despite the difficulty of the problem, stellar evolution models have been created which are able to accurately model the evolution of stars, even giving rise to supernovae and stellar pulsations \cite{Paxton2015}.  Indeed, for this project I use Modules for Experiments in Stellar Astrophysics (MESA) \cite{Paxton2011} to generate the $1$D, spherically symmetric models of stars, which I then perturb and study.  This enables me to generate stellar models to match the observed parameters of any system that I may seek to recreate, varying the mass, metallicity, and age of the star, amongst other things.  There is, however, some exploration required with this process, as MESA does not retrofit parameters such as brightness or surface temperature, but rather evolves the star from the initial properties.
+
+Also, as stars are intrinsically very non-linear, varying the initial properties produces non-linear changes in the structure.  Use of MESA enables parameter space to be explored by varying each parameter in turn to study the effects of this change on the model, and the subsequent oscillations, which can be used to deepen our ability to interpret observations by understanding how different changes affect different observations.
+
+
+
+
+\subsection{Exoplanets}
+
+The first exoplanet was discovered in 1989 by Latham \textit{et al} \cite{Latham1989}, thought at the time to be a brown dwarf, and later acknowledged as a gas giant with a minimum mass of $11$ M$_{Jup}$ \cite{Wang2012}.  This was followed by the discovery of 51 Pegasi b in 1995 \cite{Mayor1995}, another gas giant orbiting a solar-type star.  Since then, many, many more exoplanets have been discovered \cite{NASAExoplanet}, with a disproportionate number of them being gas giants in close orbits \cite{Winn2014}.
+
+The reason that selection effects favour the detection of Hot Jupiters (that is, planets of about a Jupiter mass, with semi-major axes up to approximately $0.1$ au) is due to their two primary characteristics: they are massive, and close to their star.  These effects combine to have the greatest gravitational influence on the star, giving a large radial velocity (RV) signal, as well as a wider range of angles from which a transit can be observed, and the short period of the orbits enables periodicity to be well established over a shorter time that for planets with larger semi-major axes.  Given that most early detections came through RV measurements, and the huge success of Kepler and K2 using the transit method \cite{Coughlin2016}, the current population of detected exoplanets should not be understood to be a representative sample, but its preferential selection is useful for the purposes of this project.
+
+
+\subsection{Tidal Asteroseismology}
+
+The same effects which make Hot Jupiters so prevalent in our current exoplanet archives interest me -- that they are massive and orbit close to their host star.  In fact, the tidal gravitational effect from the planet is a second order effect, to which the motion of the star about the common centre of mass of the system as a whole is the first order effect.
 
 
 
@@ -41,6 +102,11 @@ The great benefit in observing these osillations is the fact that they are oscil
 
 
 
+\section{Acknowledgements}
+
+I would like to acknowledge MESA, \cite{Paxton2011}. http://mesa.sourceforge.net/index.html
+
+This research has made use of the NASA Exoplanet Archive, which is operated by the California Institute of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet Exploration Program.
 
 
 
@@ -48,6 +114,13 @@ The great benefit in observing these osillations is the fact that they are oscil
 \bibliography{library}
 
 
+
+
+\newpage
+
+\appendix
+
+\section{Stellar Oscillation Equations} \label{ap:Osc}
 
 
 
