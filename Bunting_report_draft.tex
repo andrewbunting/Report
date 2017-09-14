@@ -71,7 +71,7 @@ In order to quantitatively study these oscillations, a system of equations to de
 \end{description}
 
 
-To start with, 12 hydrodynamic and thermodynamic equations are linearised and expressed in terms of spherical harmonics. The undesirable perturbed variables are eliminated, to leave four first order linear differential equations in terms of $\xi_{r}$, $F_{r}$, $p'$ and $T'$; the radial displacement, perturbation to the radial flux, perturbation to the pressure and perturbation to the temperature.  A more complete derivation is given in appendix \ref{ap:Osc}.
+To start with, 12 hydrodynamic and thermodynamic equations are linearised and expressed in terms of spherical harmonics. The undesirable perturbed variables are eliminated, to leave four first order linear differential equations in terms of $\xi_{r}$, $F_{r}'$, $p'$ and $T'$; the radial displacement, perturbation to the radial flux, perturbation to the pressure and perturbation to the temperature.  A more complete derivation is given in appendix \ref{ap:Osc}.
 
 
 
@@ -286,7 +286,7 @@ Firstly, a purely physical parameter was varied by up to $1 \%$, the semi-major 
 
 
 
-The other parameter which was varied was the resolution.  In this case, a flat limit was introduced across the whole star, rather than varying it to match the needed resolution in order to try to keep things as simple as possible.
+The other parameter which was varied was the resolution, the outputs of which are shown in figure \ref{fig:Resvar}.  In this case, a flat limit was introduced across the whole star, rather than varying it to match the needed resolution in order to try to keep things as simple as possible.  In all cases the resolution is sufficient to resolve the oscillations, (with the lowest resolution having at least 13 points covering the shortest spatial wavelength, and the highest resolution having at least 20 points).  Similar to the case of varying $D$, varying the resolution has a significant effect on the amplitude of the oscillations towards the centre of the star, but has a totally negligible effect towards the surface.  This may be partially due to the fact that the MESA skeleton of cells is already of a higher resolution than the limits used in this case for the surface, coupled with the fact that the solution is no longer oscillatory.
 
 
 
@@ -310,14 +310,61 @@ The other parameter which was varied was the resolution.  In this case, a flat l
 \end{subfigure}
 
 \caption{The full solution for the non-adiabatic case, showing the peak radial velocity (that is, $m \omega \xi_{r}$) in units of $\frac{m_{p}}{m_{p} + M_{*}}$ m s$^{-1}$, against the proportional radial distance from the centre.  In these figures the maximum cell size, and therefore the resolution limit of the grid, has been varied slightly, leading to a spread in the amplitudes of the oscillations.  The maximum cell size, as a proportion of the stellar radius, is plotted at $6 \times 10^{-5}$ (purple line), $7 \times 10^{-5}$ (green line), $8 \times 10^{-5}$ (blue line), and $9 \times 10^{-5}$ (orange line).}
-\label{fig:Dvar}
+\label{fig:Resvar}
 \end{center}
 \end{figure}
 
 
 
 
+
+Where there is variation in the amplitude, the spatial wavelengths are still unaffected, and the overall patterns of behaviour are very similar for all the resolutions.  This is encouraging, as it shows that, although resolution may limit the extent to which we can extract precise quantitative data from the central regions, the nature and behaviour of the waves, both oscillatory and evanescent, seems to be unaffected.  As such, whilst it is clear that a higher resolution is desirable, it does not limit the usefulness of the output any more than the physical limits in the precision of the parameters of the system do (as shown in figure \ref{fig:Dvar}).
+
+
+A final point to consider is the validity of the assumptions made in the derivation of the equations (listed in section \ref{Intro:StellarOsc}), to check that the solution is consistent with them.  This essentially boils down to ensuring that the perturbations are small at all points throughout the star, which can be assessed by checking the output throughout the entirety of the star.  Where this assumption is likely to break depends on the variables: $\xi_{r}$ and $F_{r}'$ are most likely to be comparable to the local equilibrium values ($r$ and $F_{r}$) towards to core of the star; $p'$ and $T'$ are most likely to comparable towards the surface.  In the case tested here, other than a few points in the value of $F_{r}'$ at the very core, all points are $\ll 1$.  These very core points are not thought to be much of an issue, as they seem to just be an edge effect, which has no apparent impact on the rest of the solution, and quickly decays away.
+
+
+
+Overall, the code is well tested, and reproduces previous results well.  It is easy to apply to any model created in MESA, and the stability of the solution can be simply tested by investigating the effect of small variations in parameters, enabling the expected errors to be very simply and effectively assessed, and the code can be adapted and continually tested to ensure that the equations remain valid in all cases.
+
+
+
+
+
+
+\section{Conclusion} \label{Conc}
+
+
+Overall, the project has started well, with the production of an effective, quick and adaptable code which can be used to accurately solve the stellar oscillation equations.  The code's limitations have been explored, including both errors due to limited physical knowledge and limitations inherent in the numerical calculation.
+
+There are many observed systems to which this code could be applied, as well as multiple different avenues of further research, which will be discussed in the section \ref{Future}.  The outputs of this code are useful, and will be able to be compared to observations soon, as they can be translated into both photometric and spectroscopic effects, which will enable the accuracy of stellar models to be tested, and will also lead to improved methods for detecting subsequent planets in systems with an observed Hot Jupiter.
+
+Furthermore, the code is adaptable, in that the source of the perturbation could be changed in order to model another cause of oscillations, and that the code can be expanded to address different modes of oscillation, stellar rotation, or eccentric planetary orbits.
+
+
+
+
+
+
+
+\section{Further Work}   \label{Future}
+
+
+The most immediate plan would be to extend the code to convert the solution into the photometric and spectroscopic observations which would result, and to apply this to a number of known systems with Hot Jupiters, such as Pegasi 51b, HD 189733 b and HD 209458 b.  This would result in a paper, likely over the course of a few months.  The assessment of different systems to find those which would have the greatest likelihood of being detected in observations would follow this.
+
+In terms of a slightly more theoretically exploratory angle, the tidal asteroseismology of advanced stars, particularly Red Giants will be explored, to investigate the potentially observable oscillations, and how this could be used in both the testing of the structure of advanced stars, and also for the prospects of detecting multiple planets around Red Giants.  This kind of investigation could also be applied to White Dwarfs, or even to stellar binaries to predict the tidal oscillations induced in both objects.  Each avenue could be deepened, depending upon the success of the modelling, and the prospect for relevant observations, but this would also be likely to produce at least one paper.
+
+The code as a whole could be broadened in its scope, by extending the realm over which the code is applicable: allowing for stellar rotation, eccentric orbits, and higher order perturbations.  This would apply to all of the above in terms of extending the relevancy and scope of research, and could enable better characterisation of systems, by being able to constrain the rotation of stars by comparing the predicted and observed results.  There are also published results regarding the modelled dynamical tides in stars as a result of rotation and eccentric orbits \cite{Burkart2012} against which the code could be once more tested and calibrated.
+
+Overall, there are several possible, realistic and valuable avenues down which this research could continue, which could make predictions which could be used to potentially direct the use of observing time, and to test the accuracy of stellar modelling across a range of scenarios.
+
+
+
+
+
 \section{Acknowledgements}  \label{Acknowledgements}
+
+I would like to acknowledge the input of my supervisor, Caroline Terquem, in the form of guidance and discussion throughout this project.
 
 I would like to acknowledge MESA, \cite{Paxton2011}. http://mesa.sourceforge.net/index.html
 
